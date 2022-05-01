@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-const Search = () => {
+const Search = (props) => {
   const [term, setTerm] = useState("");
 
   const changeTerm = (e) => {
@@ -23,31 +23,52 @@ const Search = () => {
   // bunda useEffect faqat massiv ichidagi berib qoygan ozigaruvchi ozgarsagina ishlaydi
 
   useEffect(() => {
-    const getData = async () => {
-      const data = await axios.get("https://en.wikipedia.org/w/api.php", {
-        params: {
-          action: "query",
-          list: "search",
-          format: "json",
-          origin: "*",
-          srsearch: term,
-        },
-      });
-
-      setResults(data.data.query.search);
-      // console.log(data.data.query.search);
+    const chiqar = async () => {
+      let d = await props.getInfo(term);
+      setResults(d);
     };
     const timer = setTimeout(() => {
       if (term) {
-        getData();
+        chiqar();
       } else if (!term && results.length) {
         setResults([]);
       }
     }, 1000);
+
     return () => {
       clearTimeout(timer);
     };
   }, [term]);
+
+  // useEffect(() => {
+  //   const getData = async () => {
+  //     const data = await axios.get("https://en.wikipedia.org/w/api.php", {
+  //       params: {
+  //         action: "query",
+  //         list: "search",
+  //         format: "json",
+  //         origin: "*",
+  //         srsearch: term,
+  //       },
+  //     });
+
+  //     setResults(data.data.query.search);
+  //   };
+  //   const timer = setTimeout(() => {
+  //     if (term) {
+  //       getData();
+  //     } else if (!term && results.length) {
+  //       setResults([]);
+  //     }
+  //   }, 1000);
+  //   return () => {
+  //     clearTimeout(timer);
+  //   };
+  // }, [term]);
+
+  // Biz apiga murojat qilayotgan funksiyan App ga otkazib qoyishimiz zarur
+  // bu faylda yaratish unchalik togri yol emas shuning uchun Api ga murojat qilayotgan funksiyani
+  // App filega otkazib bu komponentaga props qilib berib yubordik
 
   const renderResults = () => {
     return results.map((val) => {
