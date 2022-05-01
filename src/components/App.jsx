@@ -2,6 +2,20 @@ import React from "react";
 import Accordion from "./Accordion.jsx";
 import Search from "./Search.jsx";
 import Dropdown from "./Dropdown.jsx";
+import axios from "axios";
+
+const getWikiInfo = async (word) => {
+  const data = await axios.get("https://en.wikipedia.org/w/api.php", {
+    params: {
+      action: "query",
+      list: "search",
+      format: "json",
+      origin: "*",
+      srsearch: word,
+    },
+  });
+  return data.data.query.search;
+};
 const dataAccardion = [
   {
     savol: "React zormi",
@@ -33,7 +47,7 @@ const dataDropdown = [
 const App = () => {
   return (
     <div>
-      <Dropdown data={dataDropdown} />
+      <Search getInfo={getWikiInfo} />
     </div>
   );
 };
