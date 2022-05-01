@@ -24,7 +24,6 @@ const Dropdown = (props) => {
   const ref = useRef();
   useEffect(() => {
     document.querySelector("body").addEventListener("click", (e) => {
-      console.log(e.target);
       if (e.target.contains(ref.current)) return;
       setCheck(false);
     });
