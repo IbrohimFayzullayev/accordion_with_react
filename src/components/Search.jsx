@@ -17,6 +17,9 @@ const Search = () => {
   //   console.log("Use effectni ikkinchi korinishi");
   // });
 
+  // useEffect(()=>{
+  //   console.log("useEffectni uchinchi korinishi");
+  // },[term]);
   useEffect(() => {
     const getData = async () => {
       const data = await axios.get("https://en.wikipedia.org/w/api.php", {
