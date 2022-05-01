@@ -20,6 +20,7 @@ const Search = () => {
   // useEffect(()=>{
   //   console.log("useEffectni uchinchi korinishi");
   // },[term]);
+  // bunda useEffect faqat massiv ichidagi berib qoygan ozigaruvchi ozgarsagina ishlaydi
 
   useEffect(() => {
     const getData = async () => {
