@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 const Search = (props) => {
   const [term, setTerm] = useState("");
 
@@ -16,6 +15,7 @@ const Search = (props) => {
   // useEffect(() => {
   //   console.log("Use effectni ikkinchi korinishi");
   // });
+  //  ikkinchi usuli bu har safar nimadir ozgarish bolganda ishlab ketadi
 
   // useEffect(()=>{
   //   console.log("useEffectni uchinchi korinishi");
