@@ -29,7 +29,6 @@ const Dropdown = (props) => {
     });
   });
 
-  // console.log(ref.current);
   return (
     <div ref={ref} className="ui container">
       <h1>Dropdown</h1>
